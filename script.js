@@ -51,31 +51,32 @@ function showMessage(response) {
     });
   }
 
-  if (response === "Yes") {
-    // Remove the name message and "No" button
+if (response === "Yes") {
+    // Remove the name message and the "No" button
     document.getElementById("name").remove();
     document.getElementById("no-button").remove();
-
     const videoElement = document.querySelector("video");
     if (videoElement) {
       videoElement.pause();
       videoElement.remove();
     }
 
-    // Play audio for celebration
+    // Create an audio element to play the sound
     const audioElement = document.createElement("audio");
-    audioElement.src = "./Minions Cheering.mp4";
-    audioElement.preload = "auto";
-    audioElement.play().catch(e => console.error("Audio playback failed:", e));
+    audioElement.src = "./Minions Cheering.mp3"; // Source of the sound
+    audioElement.preload = "auto"; // Preloading the audio
+    audioElement.play() // Play the sound
+      .catch(e => console.error("Audio playback failed:", e)); // Catch and log playback errors
 
-    // Update question text and show dance GIF
-    const questionText = document.getElementById("question");
-    questionText.textContent = "Yeeeesss 💕 Rendez-vous le 14, Madame";
-    questionText.style.display = "block";
-    questionText.style.fontStyle = "normal";
+    // Update the text content, display the message, and change the image to "dance.gif"
+    const yesMessage = document.getElementById("question");
+    yesMessage.textContent = "See you on the 14th my princess";
+    yesMessage.style.display = "block";
+    yesMessage.style.fontStyle = "normal";
     document.getElementsByClassName("image")[0].src = "images/dance.gif";
 
-    // Remove the "Oui" button
-    document.getElementById("Oui-button").remove();
+    // Remove the "Yes" button
+    document.getElementById("yesButton").remove();
   }
+
 }
