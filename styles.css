@@ -71,7 +71,7 @@ body .container {
 }
 
 .move {
-  animation: moveNonMessage 0.5s linear;
+  animation: moveNoMessage 0.5s linear;
 }
 
 @keyframes moveNoMessage {
