@@ -1,5 +1,6 @@
 function showMessage(response) {
   let videoPlayed = false;
+
   if (response === "No") {
     const noButton = document.getElementById("no-button");
     const maxWidth = window.innerWidth - noButton.offsetWidth;
@@ -8,77 +9,73 @@ function showMessage(response) {
     // Set the button position to absolute
     noButton.style.position = "absolute";
 
-    // Change the image source to "gun.gif"
+    // Change the image to gun.gif
     document.getElementsByClassName("image")[0].src = "images/gun.gif";
 
-    // Generate random coordinates within the visible container
+    // Generate random coordinates within the window
     const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
     const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
 
-    // Apply the new coordinates to the button
     noButton.style.left = randomX + "px";
     noButton.style.top = randomY + "px";
 
-    // Update text content and hide the name message
-    document.getElementById("question").textContent =
-      "Choose wisely";
+    // Update the question text and hide the name
+    document.getElementById("question").textContent = "Bien tenté… mais tu t’échapperas pas si facilement 😏";
     document.getElementById("name").style.display = "none";
 
-    // Add a mouseover event listener to the "No" button
+    // Move the "No" button on hover and play video once
     noButton.addEventListener("mouseover", () => {
       if (!videoPlayed) {
         const videoElement = document.createElement("video");
         videoElement.src = "./Maroon 5 - Sugar.mp4#t=42";
         videoElement.autoplay = true;
         videoElement.controls = false;
-        document.body.appendChild(videoElement);
         videoElement.style.position = "fixed";
         videoElement.style.top = "40%";
         videoElement.style.left = "50%";
         videoElement.style.transform = "translate(-50%, -50%)";
-        videoElement.style.width = "700px"
+        videoElement.style.width = "700px";
         document.body.appendChild(videoElement);
-        // Set the flag to true after playing the video
+
         videoPlayed = true;
       }
 
-      // Generate new random coordinates when the button is hovered
-      const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
-      const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
+      // Generate new random position on hover
+      const newX = Math.max(0, Math.floor(Math.random() * maxWidth));
+      const newY = Math.max(0, Math.floor(Math.random() * maxHeight));
 
       noButton.style.zIndex = "100";
-      // Apply new coordinates to the button, causing it to move
-      noButton.style.left = randomX + "px";
-      noButton.style.top = randomY + "px";
+      noButton.style.left = newX + "px";
+      noButton.style.top = newY + "px";
     });
   }
 
   if (response === "Yes") {
-    // Remove the name message and the "No" button
+    // Remove the name message and "No" button
     document.getElementById("name").remove();
     document.getElementById("no-button").remove();
+
+    // Stop any playing video
     const videoElement = document.querySelector("video");
     if (videoElement) {
       videoElement.pause();
       videoElement.remove();
     }
 
-    // Create an audio element to play the sound
+    // Play audio for celebration
     const audioElement = document.createElement("audio");
-    audioElement.src = "./Minions Cheering.mp4"; // Source of the sound
-    audioElement.preload = "auto"; // Preloading the audio
-    audioElement.play() // Play the sound
-      .catch(e => console.error("Audio playback failed:", e)); // Catch and log playback errors
+    audioElement.src = "./Minions Cheering.mp4";
+    audioElement.preload = "auto";
+    audioElement.play().catch(e => console.error("Audio playback failed:", e));
 
-    // Update the text content, display the message, and change the image to "dance.gif"
-    const yesMessage = document.getElementById("question");
-    yesMessage.textContent = "See you on the 14th my princess";
-    yesMessage.style.display = "block";
-    yesMessage.style.fontStyle = "normal";
+    // Update question text and show dance GIF
+    const questionText = document.getElementById("question");
+    questionText.textContent = "Yeeeesss 💕 Rendez-vous le 14, Madame";
+    questionText.style.display = "block";
+    questionText.style.fontStyle = "normal";
     document.getElementsByClassName("image")[0].src = "images/dance.gif";
 
     // Remove the "Yes" button
-    document.getElementById("yesButton").remove();
+    document.getElementById("yes-button").remove();
   }
-
 }
