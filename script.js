@@ -70,7 +70,7 @@ if (response === "Yes") {
 
     // Update the text content, display the message, and change the image to "dance.gif"
     const yesMessage = document.getElementById("question");
-    yesMessage.textContent = "See you on the 14th my princess";
+    yesMessage.textContent = "Rendez vous le 14 Madame";
     yesMessage.style.display = "block";
     yesMessage.style.fontStyle = "normal";
     document.getElementsByClassName("image")[0].src = "images/dance.gif";
