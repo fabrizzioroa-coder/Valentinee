@@ -2,7 +2,7 @@ function showMessage(response) {
   let videoPlayed = false;
 
   if (response === "Non") {
-    const noButton = document.getElementById("non-button");
+    const noButton = document.getElementById("no-button");
     const maxWidth = window.innerWidth - noButton.offsetWidth;
     const maxHeight = window.innerHeight - noButton.offsetHeight;
 
@@ -21,7 +21,7 @@ function showMessage(response) {
 
     // Update the question text and hide the name
     document.getElementById("question").textContent = "Bien tenté… mais tu t’échapperas pas si facilement 😏";
-    document.getElementById("name").style.display = "none";
+    document.getElementById("name").style.display = "Valentine";
 
     // Move the "Non" button on hover and play video once
     noButton.addEventListener("mouseover", () => {
@@ -53,7 +53,7 @@ function showMessage(response) {
   if (response === "Oui") {
     // Remove the name message and "Non" button
     document.getElementById("name").remove();
-    document.getElementById("non-button").remove();
+    document.getElementById("no-button").remove();
 
     // Stop any playing video
     const videoElement = document.querySelector("video");
