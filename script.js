@@ -1,56 +1,88 @@
-const noButton = document.getElementById("no-button");
-const yesButton = document.getElementById("yes-button");
+let videoPlayed = false;
 
-const noMessage = document.getElementById("no-message");
-const yesMessage = document.getElementById("yes-message");
+function showMessage(response) {
+  if (response === "No") {
+    const noButton = document.getElementById("no-button");
+    const maxWidth = window.innerWidth - noButton.offsetWidth;
+    const maxHeight = window.innerHeight - noButton.offsetHeight;
 
-// Création du compteur
-let attempts = 0;
-const counter = document.createElement("p");
-counter.id = "counter";
-counter.textContent = "Tentatives pour dire non : 0";
-document.querySelector(".Mainprompt").appendChild(counter);
+    // Position absolue pour pouvoir le déplacer
+    noButton.style.position = "absolute";
 
-// Déplacement aléatoire du bouton "Non"
-function moveNoButton() {
-  const container = document.querySelector(".container");
+    // Changement d'image
+    document.getElementsByClassName("image")[0].src = "images/gun.gif";
 
-  const containerRect = container.getBoundingClientRect();
-  const buttonRect = noButton.getBoundingClientRect();
+    // Position aléatoire
+    const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
+    const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
 
-  const maxX = containerRect.width - buttonRect.width;
-  const maxY = containerRect.height - buttonRect.height;
+    noButton.style.left = randomX + "px";
+    noButton.style.top = randomY + "px";
 
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
+    // Texte et nom
+    document.getElementById("question").textContent = "Choisis bien 😏";
+    document.getElementById("name").style.display = "none";
 
-  noButton.style.position = "absolute";
-  noButton.style.left = `${randomX}px`;
-  noButton.style.top = `${randomY}px`;
+    // Éviter de rajouter l'event plusieurs fois
+    if (!noButton.dataset.listenerAdded) {
+      noButton.dataset.listenerAdded = "true";
 
-  attempts++;
-  counter.textContent = `Tentatives pour dire non : ${attempts}`;
+      noButton.addEventListener("mouseover", () => {
+        if (!videoPlayed) {
+          const videoElement = document.createElement("video");
+          videoElement.src = "./Maroon 5 - Sugar.mp4#t=42";
+          videoElement.autoplay = true;
+          videoElement.controls = false;
 
-  // Messages de plus en plus taquins
-  if (attempts === 3) counter.textContent += " 😏";
-  if (attempts === 5) counter.textContent += " 😅";
-  if (attempts === 8) counter.textContent += " 😂";
+          videoElement.style.position = "fixed";
+          videoElement.style.top = "40%";
+          videoElement.style.left = "50%";
+          videoElement.style.transform = "translate(-50%, -50%)";
+          videoElement.style.width = "700px";
+          videoElement.style.zIndex = "200";
+
+          document.body.appendChild(videoElement);
+          videoPlayed = true;
+        }
+
+        const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
+        const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
+
+        noButton.style.left = randomX + "px";
+        noButton.style.top = randomY + "px";
+      });
+    }
+  }
+
+  if (response === "Yes") {
+    // Nettoyage
+    const name = document.getElementById("name");
+    if (name) name.remove();
+
+    const noButton = document.getElementById("no-button");
+    if (noButton) noButton.remove();
+
+    const videoElement = document.querySelector("video");
+    if (videoElement) {
+      videoElement.pause();
+      videoElement.remove();
+    }
+
+    // Son
+    const audioElement = document.createElement("audio");
+    audioElement.src = "./Minions Cheering.mp3";
+    audioElement.preload = "auto";
+    audioElement.play().catch(() => {});
+
+    // Message final
+    const question = document.getElementById("question");
+    question.textContent = "Rendez-vous le 14, Madame 💖";
+    question.style.fontStyle = "normal";
+
+    document.getElementsByClassName("image")[0].src = "images/dance.gif";
+
+    // Suppression du bouton Oui
+    const yesButton = document.getElementById("yes-button");
+    if (yesButton) yesButton.remove();
+  }
 }
-
-// Le bouton fuit la souris
-noButton.addEventListener("mouseover", moveNoButton);
-
-// Si elle clique quand même sur "Non"
-noButton.addEventListener("click", () => {
-  noMessage.style.display = "block";
-  yesMessage.style.display = "none";
-});
-
-// Clic sur "Oui" 💖
-yesButton.addEventListener("click", () => {
-  yesMessage.style.display = "block";
-  noMessage.style.display = "none";
-
-  counter.textContent = `Tu as essayé ${attempts} fois… mais tu as dit OUI 💕`;
-});
-
