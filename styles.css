@@ -61,7 +61,7 @@ body .container {
   flex-direction: row;
 }
 
-#no-button {
+#non-button {
   cursor: pointer;
 }
 
@@ -71,10 +71,10 @@ body .container {
 }
 
 .move {
-  animation: moveNoMessage 0.5s linear;
+  animation: moveNonMessage 0.5s linear;
 }
 
-@keyframes moveNoMessage {
+@keyframes moveNonMessage {
   0% {
     transform: translate(0, 0);
   }
