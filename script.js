@@ -1,6 +1,5 @@
 function showMessage(response) {
   let videoPlayed = false;
-
   if (response === "No") {
     const noButton = document.getElementById("no-button");
     const maxWidth = window.innerWidth - noButton.offsetWidth;
@@ -21,24 +20,26 @@ function showMessage(response) {
 
     // Update the question text and hide the name
     document.getElementById("question").textContent = "Bien tenté… mais tu t’échapperas pas si facilement 😏";
-    document.getElementById("name").style.display = "Valentine";
+    document.getElementById("name").style.display = "none";
 
-    // Move the "Non" button on hover and play video once
+    // Add a mouseover event listener to the "No" button
     noButton.addEventListener("mouseover", () => {
       if (!videoPlayed) {
         const videoElement = document.createElement("video");
         videoElement.src = "./Maroon 5 - Sugar.mp4#t=42";
         videoElement.autoplay = true;
         videoElement.controls = false;
+        document.body.appendChild(videoElement);
         videoElement.style.position = "fixed";
         videoElement.style.top = "40%";
         videoElement.style.left = "50%";
         videoElement.style.transform = "translate(-50%, -50%)";
-        videoElement.style.width = "700px";
+        videoElement.style.width = "700px"
         document.body.appendChild(videoElement);
-
+        // Set the flag to true after playing the video
         videoPlayed = true;
       }
+
 
       // Generate new random position on hover
       const newX = Math.max(0, Math.floor(Math.random() * maxWidth));
@@ -50,12 +51,11 @@ function showMessage(response) {
     });
   }
 
-  if (response === "Oui") {
+  if (response === "Yes") {
     // Remove the name message and "No" button
     document.getElementById("name").remove();
     document.getElementById("no-button").remove();
 
-    // Stop any playing video
     const videoElement = document.querySelector("video");
     if (videoElement) {
       videoElement.pause();
