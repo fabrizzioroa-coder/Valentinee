@@ -1,6 +1,6 @@
 function showMessage(response) {
   let videoPlayed = false;
-  if (response === "No") {
+  if (response === "Non") {
     const noButton = document.getElementById("no-button");
     const maxWidth = window.innerWidth - noButton.offsetWidth;
     const maxHeight = window.innerHeight - noButton.offsetHeight;
@@ -21,10 +21,10 @@ function showMessage(response) {
 
     // Update text content and hide the name message
     document.getElementById("question").textContent =
-      "Choose wisely";
+      "Choisis bien";
     document.getElementById("name").style.display = "none";
 
-    // Add a mouseover event listener to the "No" button
+    // Add a mouseover event listener to the "Non" button
     noButton.addEventListener("mouseover", () => {
       if (!videoPlayed) {
         const videoElement = document.createElement("video");
@@ -53,8 +53,8 @@ function showMessage(response) {
     });
   }
 
-  if (response === "Yes") {
-    // Remove the name message and the "No" button
+  if (response === "Oui") {
+    // Remove the name message and the "Non" button
     document.getElementById("name").remove();
     document.getElementById("no-button").remove();
     const videoElement = document.querySelector("video");
@@ -77,7 +77,7 @@ function showMessage(response) {
     yesMessage.style.fontStyle = "normal";
     document.getElementsByClassName("image")[0].src = "images/dance.gif";
 
-    // Remove the "Yes" button
+    // Remove the "Oui" button
     document.getElementById("yesButton").remove();
   }
 
