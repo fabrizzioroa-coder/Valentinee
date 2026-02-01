@@ -1,7 +1,7 @@
 function showMessage(response) {
   let videoPlayed = false;
 
-  if (response === "Non") {
+  if (response === "No") {
     const noButton = document.getElementById("no-button");
     const maxWidth = window.innerWidth - noButton.offsetWidth;
     const maxHeight = window.innerHeight - noButton.offsetHeight;
@@ -51,7 +51,7 @@ function showMessage(response) {
   }
 
   if (response === "Oui") {
-    // Remove the name message and "Non" button
+    // Remove the name message and "No" button
     document.getElementById("name").remove();
     document.getElementById("no-button").remove();
 
