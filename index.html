@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Valentine</title>
+    <title>Saint-Valentin 💖</title>
 </head>
 
 <body>
     <div class="container">
         <div class="Mainprompt">
-            <img class="image" src="images/catflower.jpg"></img>
-            <h1 class="hh" id="name">Coucou beauté!</h1>
-            <p class="pp" id="question">Veux tu être ma Valentine?</p>
+            <img class="image" src="images/catflower.jpg" alt="Chat mignon avec une fleur">
+            
+            <h1 class="hh" id="name">Hey beauté !</h1>
+            <p class="pp" id="question">Veux-tu être ma Valentine ?</p>
+
             <div class="buttons">
-                <button id="non-button" onclick="showMessage('Non')">Non</button>
-                <button onclick="showMessage('Oui')" id="yesButton">Oui</button>
+                <button id="no-button">Non</button>
+                <button id="yes-button">Oui</button>
             </div>
+
             <div class="hidden-message" id="no-message">
-                <p>Bien essayé, mais tu t’échapperas pas si facilement!</p>
+                <p>Bien tenté… mais tu t’échapperas pas si facilement 😏</p>
             </div>
+
             <div class="hidden-message" id="yes-message">
-                <p>Yeees! On se voit le 14 Madame</p>
+                <p>Yeeeesss 💕 Rendez-vous le 14, Madame</p>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 
