@@ -1,8 +1,8 @@
 function showMessage(response) {
   let videoPlayed = false;
 
-  if (response === "No") {
-    const noButton = document.getElementById("no-button");
+  if (response === "Non") {
+    const noButton = document.getElementById("non-button");
     const maxWidth = window.innerWidth - noButton.offsetWidth;
     const maxHeight = window.innerHeight - noButton.offsetHeight;
 
@@ -23,7 +23,7 @@ function showMessage(response) {
     document.getElementById("question").textContent = "Bien tenté… mais tu t’échapperas pas si facilement 😏";
     document.getElementById("name").style.display = "none";
 
-    // Move the "No" button on hover and play video once
+    // Move the "Non" button on hover and play video once
     noButton.addEventListener("mouseover", () => {
       if (!videoPlayed) {
         const videoElement = document.createElement("video");
@@ -50,10 +50,10 @@ function showMessage(response) {
     });
   }
 
-  if (response === "Yes") {
-    // Remove the name message and "No" button
+  if (response === "Oui") {
+    // Remove the name message and "Non" button
     document.getElementById("name").remove();
-    document.getElementById("no-button").remove();
+    document.getElementById("non-button").remove();
 
     // Stop any playing video
     const videoElement = document.querySelector("video");
@@ -75,7 +75,7 @@ function showMessage(response) {
     questionText.style.fontStyle = "normal";
     document.getElementsByClassName("image")[0].src = "images/dance.gif";
 
-    // Remove the "Yes" button
-    document.getElementById("yes-button").remove();
+    // Remove the "Oui" button
+    document.getElementById("Oui-button").remove();
   }
 }
